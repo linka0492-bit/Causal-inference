@@ -1,11 +1,15 @@
 """
 Численный решатель для 2D несжимаемых уравнений Навье-Стокса на
-периодической сетке -- спектральный метод (Фурье). Это "компиляция"
-дерева из navier_stokes_tree.py в исполняемую numpy-функцию: ровно та же
-роль, которую для Volterra-Lotka играл sympy.lambdify, только написанная
-руками, т.к. (а) sympy в этой песочнице недоступен, (б) даже при его
-наличии скалярная компиляция не годится для полей на сетке -- см.
-докстринг navier_stokes_tree.py.
+периодической сетке -- спектральный метод (Фурье).
+
+В отличие от "ручной" компиляции дерева из navier_stokes_tree.py, здесь
+правая часть уравнения момента (адвекция + вязкость) собирается
+символьно через sympy и компилируется в numpy-функцию через
+sympy.lambdify -- ровно та же роль, которую lambdify играл для
+Volterra-Lotka. Сами производные по x,y и нелокальная проекция Чорина
+остаются в Фурье-пространстве на numpy: это сеточные (не скалярные)
+операции, для которых символьная компиляция неприменима, но сама
+алгебраическая структура RHS извлекается из символьных выражений.
 
 Метод: pseudo-spectral. Производные по x,y считаются точно через
 преобразование Фурье (домножение на i*kx, i*ky в частотной области),
@@ -18,6 +22,27 @@
 """
 
 import numpy as np
+import sympy as sp
+
+
+# ---------------------------------------------------------------------------
+# Символьное построение правой части уравнения момента (без градиента
+# давления -- он учитывается отдельно проекцией Чорина после каждого шага
+# RK4). Ровно те же выражения, что были записаны в rhs() вручную.
+# ---------------------------------------------------------------------------
+_vx, _vy, _nu = sp.symbols("vx vy nu", real=True)
+_dvx_dx, _dvx_dy = sp.symbols("dvx_dx dvx_dy", real=True)
+_dvy_dx, _dvy_dy = sp.symbols("dvy_dx dvy_dy", real=True)
+_lap_vx, _lap_vy = sp.symbols("lap_vx lap_vy", real=True)
+
+_Fx_expr = -(_vx * _dvx_dx + _vy * _dvx_dy) + _nu * _lap_vx
+_Fy_expr = -(_vx * _dvy_dx + _vy * _dvy_dy) + _nu * _lap_vy
+
+_rhs_func = sp.lambdify(
+    (_vx, _vy, _dvx_dx, _dvx_dy, _dvy_dx, _dvy_dy, _lap_vx, _lap_vy, _nu),
+    (_Fx_expr, _Fy_expr),
+    modules="numpy",
+)
 
 
 class NavierStokes2D:
@@ -66,17 +91,22 @@ class NavierStokes2D:
         отдельно проекцией после каждого шага RK4, что эквивалентно
         схеме с расщеплением по физическим процессам, стандартной для
         incompressible NS).
+
+        Алгебраическая комбинация полей и их производных берётся из
+        символьного выражения, скомпилированного через sympy.lambdify
+        (см. _rhs_func выше); сами производные считаются спектрально.
         """
         dvx_dx, dvx_dy = self.ddx(vx), self.ddy(vx)
         dvy_dx, dvy_dy = self.ddx(vy), self.ddy(vy)
 
-        adv_x = vx * dvx_dx + vy * dvx_dy
-        adv_y = vx * dvy_dx + vy * dvy_dy
+        lap_vx = self.laplacian(vx)
+        lap_vy = self.laplacian(vy)
 
-        visc_x = nu * self.laplacian(vx)
-        visc_y = nu * self.laplacian(vy)
-
-        return -adv_x + visc_x, -adv_y + visc_y
+        return _rhs_func(vx, vy,
+                         dvx_dx, dvx_dy,
+                         dvy_dx, dvy_dy,
+                         lap_vx, lap_vy,
+                         nu)
 
     def step_rk4(self, vx, vy, nu, dt):
         k1x, k1y = self.rhs(vx, vy, nu)

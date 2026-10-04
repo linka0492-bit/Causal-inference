@@ -1,0 +1,20 @@
+Я пишу дипломную работу, которая будет построена на следующем фундаменте. Задача из новой области Causal Inference
+1) задана математическая модель PDE (уравнения Максвелла, Навье-Стокса),
+2) эта модель – суперпозиция функций, описана графом DAG, 
+3) задана выборка, 
+4) требуется показать, что данная модель адекватно описывает эту выборку –  является наиболее вероятной на множестве альтернативных моделей, заданных графами из фиксированного распределения,
+5) метод Causal Inference: с помощью интервенций мы ломаем модель и показываем, что некоторые ребра графа являются избыточными.
+
+Causal inference for Physics
+This is how a synthetic dataset should look like: guys constructed a box that
+1) control some matter (wind or light),
+2) measures the reaction of the matter.
+So they generate dataset as time series for the control problem from the sensors.
+There are two boxes:
+1) for the wind,
+2) for the light.
+!pip install causalchamber
+The paper in Nature: Also see supplemental materials.
+I put here two slides about the Magneto-hydro-dynamic PDE model. It is about the MHD connection to the SCM (Structure Causal Models).
+I think it is an important example problem (along with the Van der Pol oscillator ODE model we discussed last seminar). 
+I hope now we will discuss a diffusion process on graphs of the SCM.

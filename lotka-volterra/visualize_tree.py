@@ -64,11 +64,23 @@ def layout_layered(tree: ExpressionTree) -> dict:
 
 
 def node_label(n) -> str:
-    if n.color == NodeColor.LATENT:
-        return OP_SYMBOL.get(n.op, n.op)
-    if n.color == NodeColor.PARAMETER:
-        return f"{n.name}\n={n.value:g}"
-    return n.name
+    def expr_text(node):
+        if node.color in (NodeColor.OBSERVED, NodeColor.PARAMETER):
+            if node.color == NodeColor.PARAMETER:
+                return f"{node.name}={node.value:g}"
+            return node.name
+
+        op = OP_SYMBOL.get(node.op, node.op)
+        if not node.parents:
+            return op
+
+        parts = [expr_text(parent) for parent in node.parents]
+        if len(parts) == 1:
+            return f"{op} {parts[0]}"
+        return f"({parts[0]} {op} {parts[1]})" if len(parts) == 2 else f"{op}({', '.join(parts)})"
+
+    text = expr_text(n)
+    return text.replace(" ", "\n") if len(text) > 14 else text
 
 
 def draw_tree(ax, tree: ExpressionTree, pos: dict, highlight_shared: set = None, title: str = ""):

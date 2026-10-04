@@ -1,1 +1,37 @@
+# Виртуальное окружение (самое главное!)
 .venv/
+venv/
+env/
+ENV/
+
+# Кэш Python и скомпилированные файлы
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Тяжелые датасеты и веса моделей (если они хранятся локально)
+*.npy
+*.npz
+*.pkl
+*.pickle
+*.h5
+*.pth
+*.pt
+
+# Специфичные файлы macOS и Windows
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+
+# Настройки сред разработки (VS Code, PyCharm)
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp

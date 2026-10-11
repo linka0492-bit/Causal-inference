@@ -24,16 +24,20 @@ prepare_well_slice.py (он требует интернет и запускае�
 останавливается и печатает диагностику.
 
 Использование:
-    python run_all_navier_stokes.py
-    python run_all_navier_stokes.py --skip-fit     # пропустить шаг 4
-    python run_all_navier_stokes.py --only solver  # запустить только один шаг
+    python navier_stokes/runner.py
+    python navier_stokes/runner.py --skip-fit     # пропустить шаг 4
+    python navier_stokes/runner.py --only solver  # запустить только один шаг
 """
 
 import argparse
 import os
+from pathlib import Path
 import subprocess
 import sys
 import time
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = SCRIPT_DIR.parent
 
 
 # ---------------------------------------------------------------------------
@@ -51,17 +55,18 @@ EXCLUDED = {"prepare_well_slice.py"}
 
 
 def run_step(name, filename, extra_env=None):
-    """Запускает один python-файл как подпроцесс в текущей директории."""
+    """Запускает файл шага из navier_stokes с рабочей директорией проекта."""
     if filename in EXCLUDED:
         print(f"[SKIP] {filename} — исключён из автозапуска (требует интернет).")
         return True
 
-    if not os.path.exists(filename):
-        print(f"[FAIL] {filename} не найден в текущей директории.")
+    script_path = SCRIPT_DIR / filename
+    if not script_path.is_file():
+        print(f"[FAIL] {script_path} не найден.")
         return False
 
     print("\n" + "=" * 72)
-    print(f"[STEP:{name}] Запуск {filename}")
+    print(f"[STEP:{name}] Запуск {script_path}")
     print("=" * 72)
 
     env = os.environ.copy()
@@ -72,9 +77,10 @@ def run_step(name, filename, extra_env=None):
     try:
         # sys.executable — тот же интерпретатор, что и у раннера
         result = subprocess.run(
-            [sys.executable, filename],
+            [sys.executable, str(script_path)],
             env=env,
             check=False,
+            cwd=PROJECT_ROOT,
         )
     except KeyboardInterrupt:
         print(f"\n[ABORT] Прервано пользователем на шаге '{name}'.")
@@ -96,12 +102,12 @@ def ensure_data_present():
     но не падает: шаги 1–3 можно выполнить и без данных, шаг 4 тогда
     корректно завершится с понятной ошибкой.
     """
-    path = "well_shear_flow_slice.npz"
+    path = PROJECT_ROOT / "well_shear_flow_slice.npz"
     if not os.path.exists(path):
         print(f"[WARN] Файл {path} не найден. Шаги 1–3 выполнятся, "
               f"а шаг 4 (подгонка) потребует его наличия.\n"
               f"       Запустите prepare_well_slice.py вручную на машине "
-              f"с интернетом и положите .npz рядом со скриптами.\n")
+              f"с интернетом и положите полученный .npz в корень проекта.\n")
     else:
         size_mb = os.path.getsize(path) / (1024 * 1024)
         print(f"[INFO] Найден {path} ({size_mb:.2f} МБ).")

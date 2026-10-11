@@ -160,7 +160,7 @@ def make_shear_layer_ic(n=64, L=2 * np.pi, delta=0.05, amplitude=0.01, seed=0):
 if __name__ == "__main__":
     solver = NavierStokes2D(n=64)
     vx0, vy0 = make_shear_layer_ic(n=64)
-    traj_x, traj_y = solver.simulate(vx0, vy0, nu=0.01, dt=0.01, n_steps=200, save_every=20)
+    traj_x, traj_y = solver.simulate(vx0, vy0, nu=0.01, dt=1, n_steps=200, save_every=20)
     print("Траектория посчитана, форма:", traj_x.shape)
     for i in range(traj_x.shape[0]):
         E = solver.kinetic_energy(traj_x[i], traj_y[i])

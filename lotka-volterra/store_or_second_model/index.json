@@ -1,0 +1,29 @@
+{
+  "lotka_volterra": [
+    "add_same",
+    "add_shift10",
+    "add_shift5",
+    "base",
+    "bias_0",
+    "bias_m025",
+    "bias_p025",
+    "bias_p05",
+    "bias_p10",
+    "const_x05",
+    "const_x20",
+    "noise",
+    "noise_cond",
+    "shuffle30",
+    "small_sample",
+    "zero_lynx"
+  ],
+  "van_der_pol": [
+    "base",
+    "bias_p05",
+    "noise",
+    "noise_cond",
+    "shuffle30",
+    "small_sample",
+    "zero_second"
+  ]
+}

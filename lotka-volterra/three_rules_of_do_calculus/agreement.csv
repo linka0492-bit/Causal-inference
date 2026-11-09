@@ -1,0 +1,89 @@
+rule,exp,rho,kind,s,graph_holds,data_rejects,stat,agree
+R1,ctrl,0.0,noise,0.0,True,False,F p=7.0e-01; dR2=0.000,True
+R2,ctrl,0.0,noise,0.0,True,False,KS sig 0/24; maxD=0.05,True
+R1,E1,0.0,noise,0.01,False,True,F p=4.2e-123; dR2=0.049,True
+R2,E1,0.0,noise,0.01,True,False,KS sig 0/24; maxD=0.05,True
+R1,E1,0.0,noise,0.02,False,True,F p=0.0e+00; dR2=0.171,True
+R2,E1,0.0,noise,0.02,True,False,KS sig 0/24; maxD=0.05,True
+R1,E1,0.0,noise,0.05,False,True,F p=0.0e+00; dR2=0.532,True
+R2,E1,0.0,noise,0.05,True,False,KS sig 0/24; maxD=0.06,True
+R1,E1,0.0,noise,0.1,False,True,F p=0.0e+00; dR2=0.738,True
+R2,E1,0.0,noise,0.1,True,False,KS sig 0/24; maxD=0.07,True
+R1,E2,0.0,noise,0.05,False,True,F p=0.0e+00; dR2=0.195,True
+R2,E2,0.0,noise,0.05,True,False,KS sig 0/24; maxD=0.05,True
+R1,E2,0.0,noise,0.1,False,True,F p=0.0e+00; dR2=0.467,True
+R2,E2,0.0,noise,0.1,True,False,KS sig 0/24; maxD=0.05,True
+R1,E2,0.0,noise,0.2,False,True,F p=0.0e+00; dR2=0.747,True
+R2,E2,0.0,noise,0.2,True,False,KS sig 0/24; maxD=0.06,True
+R1,E2,0.0,noise,0.4,False,True,F p=0.0e+00; dR2=0.861,True
+R2,E2,0.0,noise,0.4,True,False,KS sig 0/24; maxD=0.07,True
+R1,E3,0.0,noise,0.1,False,True,F p=8.9e-124; dR2=0.049,True
+R2,E3,0.0,noise,0.1,True,False,KS sig 0/24; maxD=0.05,True
+R1,E3,0.0,noise,0.25,False,True,F p=0.0e+00; dR2=0.241,True
+R2,E3,0.0,noise,0.25,True,False,KS sig 0/24; maxD=0.05,True
+R1,E3,0.0,noise,0.5,False,True,F p=0.0e+00; dR2=0.333,True
+R2,E3,0.0,noise,0.5,True,False,KS sig 0/24; maxD=0.06,True
+R1,E3,0.0,noise,1.0,False,True,F p=0.0e+00; dR2=0.372,True
+R2,E3,0.0,noise,1.0,True,False,KS sig 0/24; maxD=0.06,True
+R1,ctrl,0.8,noise,0.0,True,False,F p=5.7e-01; dR2=0.000,True
+R2,ctrl,0.8,noise,0.0,False,True,KS sig 13/20; maxD=0.66,True
+R1,E1,0.8,noise,0.01,False,True,F p=1.5e-54; dR2=0.022,True
+R2,E1,0.8,noise,0.01,False,True,KS sig 11/20; maxD=0.61,True
+R1,E1,0.8,noise,0.02,False,True,F p=6.7e-185; dR2=0.072,True
+R2,E1,0.8,noise,0.02,False,True,KS sig 17/20; maxD=0.62,True
+R1,E1,0.8,noise,0.05,False,True,F p=0.0e+00; dR2=0.263,True
+R2,E1,0.8,noise,0.05,False,True,KS sig 20/22; maxD=0.75,True
+R1,E1,0.8,noise,0.1,False,True,F p=0.0e+00; dR2=0.197,True
+R2,E1,0.8,noise,0.1,False,True,KS sig 18/20; maxD=0.79,True
+R1,E2,0.8,noise,0.05,False,True,F p=2.1e-196; dR2=0.077,True
+R2,E2,0.8,noise,0.05,False,True,KS sig 18/22; maxD=0.62,True
+R1,E2,0.8,noise,0.1,False,True,F p=0.0e+00; dR2=0.226,True
+R2,E2,0.8,noise,0.1,False,True,KS sig 17/22; maxD=0.63,True
+R1,E2,0.8,noise,0.2,False,True,F p=0.0e+00; dR2=0.471,True
+R2,E2,0.8,noise,0.2,False,True,KS sig 18/22; maxD=0.66,True
+R1,E2,0.8,noise,0.4,False,True,F p=0.0e+00; dR2=0.640,True
+R2,E2,0.8,noise,0.4,False,True,KS sig 22/24; maxD=0.63,True
+R1,E3,0.8,noise,0.1,False,True,F p=9.5e-60; dR2=0.024,True
+R2,E3,0.8,noise,0.1,False,True,KS sig 13/20; maxD=0.65,True
+R1,E3,0.8,noise,0.25,False,True,F p=5.2e-298; dR2=0.114,True
+R2,E3,0.8,noise,0.25,False,True,KS sig 15/20; maxD=0.68,True
+R1,E3,0.8,noise,0.5,False,True,F p=8.8e-46; dR2=0.019,True
+R2,E3,0.8,noise,0.5,False,True,KS sig 19/20; maxD=0.67,True
+R1,E3,0.8,noise,1.0,False,True,F p=3.7e-38; dR2=0.016,True
+R2,E3,0.8,noise,1.0,False,True,KS sig 18/18; maxD=0.62,True
+R3,E1,0.0,noise,0.01,False,False,KS sig 0/40; maxD=0.06; pooled D=0.01,False
+R3,E1,0.0,noise,0.02,False,False,KS sig 0/40; maxD=0.10; pooled D=0.01,False
+R3,E1,0.0,noise,0.05,False,True,KS sig 25/40; maxD=0.28; pooled D=0.04,True
+R3,E1,0.0,noise,0.1,False,True,KS sig 36/40; maxD=0.41; pooled D=0.09,True
+R3,E1,0.0,const,0.01,False,True,KS sig 8/40; maxD=0.20; pooled D=0.03,True
+R3,E1,0.0,const,0.02,False,True,KS sig 21/40; maxD=0.38; pooled D=0.07,True
+R3,E1,0.0,const,0.05,False,True,KS sig 37/40; maxD=0.79; pooled D=0.16,True
+R3,E1,0.0,const,0.1,False,True,KS sig 39/40; maxD=0.98; pooled D=0.26,True
+R3,E1,0.0,sin,0.01,False,True,KS sig 24/40; maxD=0.48; pooled D=0.07,True
+R3,E1,0.0,sin,0.02,False,True,KS sig 28/40; maxD=0.79; pooled D=0.12,True
+R3,E1,0.0,sin,0.05,False,True,KS sig 35/40; maxD=1.00; pooled D=0.26,True
+R3,E1,0.0,sin,0.1,False,True,KS sig 38/40; maxD=1.00; pooled D=0.37,True
+R3,E2,0.0,noise,0.05,False,False,KS sig 0/40; maxD=0.07; pooled D=0.01,False
+R3,E2,0.0,noise,0.1,False,True,KS sig 1/40; maxD=0.11; pooled D=0.01,True
+R3,E2,0.0,noise,0.2,False,True,KS sig 32/40; maxD=0.28; pooled D=0.02,True
+R3,E2,0.0,noise,0.4,False,True,KS sig 40/40; maxD=0.54; pooled D=0.03,True
+R3,E2,0.0,const,0.05,False,True,KS sig 36/40; maxD=0.77; pooled D=0.04,True
+R3,E2,0.0,const,0.1,False,True,KS sig 39/40; maxD=0.98; pooled D=0.05,True
+R3,E2,0.0,const,0.2,False,True,KS sig 40/40; maxD=1.00; pooled D=0.09,True
+R3,E2,0.0,const,0.4,False,True,KS sig 40/40; maxD=1.00; pooled D=0.04,True
+R3,E2,0.0,sin,0.05,False,True,KS sig 13/40; maxD=0.18; pooled D=0.02,True
+R3,E2,0.0,sin,0.1,False,True,KS sig 21/40; maxD=0.33; pooled D=0.03,True
+R3,E2,0.0,sin,0.2,False,True,KS sig 32/40; maxD=0.59; pooled D=0.05,True
+R3,E2,0.0,sin,0.4,False,True,KS sig 32/40; maxD=0.91; pooled D=0.09,True
+R3,E3,0.0,noise,0.1,False,False,KS sig 0/40; maxD=0.06; pooled D=0.00,False
+R3,E3,0.0,noise,0.25,False,False,KS sig 0/40; maxD=0.09; pooled D=0.01,False
+R3,E3,0.0,noise,0.5,False,True,KS sig 13/40; maxD=0.19; pooled D=0.03,True
+R3,E3,0.0,noise,1.0,False,True,KS sig 30/40; maxD=0.35; pooled D=0.07,True
+R3,E3,0.0,const,0.1,False,True,KS sig 17/40; maxD=0.43; pooled D=0.06,True
+R3,E3,0.0,const,0.25,False,True,KS sig 32/40; maxD=0.86; pooled D=0.13,True
+R3,E3,0.0,const,0.5,False,True,KS sig 36/40; maxD=0.99; pooled D=0.20,True
+R3,E3,0.0,const,1.0,False,True,KS sig 39/40; maxD=1.00; pooled D=0.28,True
+R3,E3,0.0,sin,0.1,False,True,KS sig 11/40; maxD=0.29; pooled D=0.03,True
+R3,E3,0.0,sin,0.25,False,True,KS sig 16/40; maxD=0.59; pooled D=0.07,True
+R3,E3,0.0,sin,0.5,False,True,KS sig 25/40; maxD=0.85; pooled D=0.12,True
+R3,E3,0.0,sin,1.0,False,True,KS sig 35/40; maxD=0.98; pooled D=0.20,True
